@@ -241,8 +241,11 @@ Public Class FFtBebas
             Me.TBTotDPP.EditValue = Me.TBTotAkhir.EditValue
 
         ElseIf Me.RBPPn.EditValue = "Include" Then
-            Me.TBTotDPP.EditValue = Math.Round(Me.TBTotAkhir.EditValue / ((100 + Me.TBPersenPPn.EditValue) / 100), 2, MidpointRounding.AwayFromZero)
-            Me.TBTotPPn.EditValue = Math.Round(Me.TBTotAkhir.EditValue - (Me.TBTotAkhir.EditValue / ((100 + Me.TBPersenPPn.EditValue) / 100)), 2, MidpointRounding.AwayFromZero)
+            'Me.TBTotDPP.EditValue = Math.Round(Me.TBTotAkhir.EditValue / ((100 + Me.TBPersenPPn.EditValue) / 100), 2, MidpointRounding.AwayFromZero)
+            'Me.TBTotPPn.EditValue = Math.Round(Me.TBTotAkhir.EditValue - (Me.TBTotAkhir.EditValue / ((100 + Me.TBPersenPPn.EditValue) / 100)), 2, MidpointRounding.AwayFromZero)
+            Me.TBTotDPP.EditValue = Me.TBTotAkhir.EditValue
+            Me.TBTotPPn.EditValue = Math.Round(Me.TBTotDPP.EditValue * Me.TBPersenPPn.EditValue / 100, 2, MidpointRounding.AwayFromZero)
+            Me.TBTotAkhir.EditValue = Me.TBTotSbDisc.EditValue - Me.TBTotDisc.EditValue - Me.TBTamDiscRp.EditValue - Me.TBTamDiscPRp.EditValue + Me.TBTotPPn.EditValue
 
         ElseIf Me.RBPPn.EditValue = "Exclude" Then
             Me.TBTotDPP.EditValue = Me.TBTotAkhir.EditValue
@@ -364,7 +367,7 @@ Public Class FFtBebas
             Me.RBPPn.EditValue = Me.GridView2.GetFocusedDataRow.Item("TipePPn")
 
             If Me.RBPPn.EditValue = "Include" Then
-                Me.TBPersenPPn.Properties.ReadOnly = True
+                Me.TBPersenPPn.Properties.ReadOnly = False
             ElseIf Me.RBPPn.EditValue = "Exclude" Then
                 Me.TBPersenPPn.Properties.ReadOnly = False
             ElseIf Me.RBPPn.EditValue = "Non PPn" Then
@@ -515,7 +518,7 @@ Public Class FFtBebas
 
         Me.TBTotSbDisc.EditValue = Math.Round(CType(Me.GridView1.Columns("HarSbDisc").SummaryText, Decimal), 2, MidpointRounding.AwayFromZero)
         Me.TBTotDisc.EditValue = Math.Round(CType(Me.GridView1.Columns("DiscRp").SummaryText, Decimal) + CType(Me.GridView1.Columns("RpDiscP").SummaryText, Decimal), 4, MidpointRounding.AwayFromZero)
-        'Me.TBTotAkhir.EditValue = Me.TBTotSbDisc.EditValue - Me.TBTotDisc.EditValue - Me.TBTamDiscRp.EditValue - Me.TBTamDiscPRp.EditValue
+        Me.TBTotAkhir.EditValue = Me.TBTotSbDisc.EditValue - Me.TBTotDisc.EditValue - Me.TBTamDiscRp.EditValue - Me.TBTamDiscPRp.EditValue + Me.TBTotPPn.EditValue
         HitPPn()
 
         If Me.RBPPn.EditValue <> "Non PPn" Then
@@ -633,8 +636,9 @@ Public Class FFtBebas
                                 End If
                             End If
                         Next
-
+                        'MsgBox(Me.TBTotAkhir.EditValue)
                         If x = 0 Then
+
                             XtraMessageBox.Show("Data Berhasil Disimpan Dengan ID : " & Me.TBKode.EditValue & "", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         ElseIf x = 1 Then
                             XtraMessageBox.Show("Id Tidak Boleh Sama", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -690,7 +694,7 @@ Public Class FFtBebas
                     .Parameters.Add("@TotDPP", SqlDbType.Decimal).Value = Me.TBTotDPP.EditValue
                     .Parameters.Add("@TotPPn", SqlDbType.Decimal).Value = Me.TBTotPPn.EditValue
                     .Parameters.Add("@TotQty", SqlDbType.Decimal).Value = Math.Round(CType(Me.GridView1.Columns("Qty").SummaryText, Decimal), 2)
-                    .Parameters.Add("@TotAkhir", SqlDbType.Decimal).Value = Me.TBTotAkhir.EditValue
+                    .Parameters.Add("@TotAkhir", SqlDbType.Decimal).Value = Math.Round(Me.TBTotAkhir.EditValue * Me.TBNilTukarRp.EditValue, 2, MidpointRounding.AwayFromZero)
                     .Parameters.Add("@TotAkhirRp", SqlDbType.Decimal).Value = Math.Round(Me.TBTotAkhir.EditValue * Me.TBNilTukarRp.EditValue, 2, MidpointRounding.AwayFromZero)
                     .Parameters.Add("@Ket", SqlDbType.VarChar).Value = Me.MKet.EditValue
                     .Parameters.Add("@PPn", SqlDbType.Bit).Value = stsPPn
@@ -931,13 +935,16 @@ Public Class FFtBebas
 
     End Sub
     Private Sub RBPPn_Leave(sender As Object, e As EventArgs) Handles RBPPn.Leave
-        If Me.RBPPn.EditValue = "Include" Then
-            Me.TBPersenPPn.Properties.ReadOnly = True
-            Me.TBPersenPPn.EditValue = 0
-            Me.RBPPn.EditValue = "Non PPn"
+        'If Me.RBPPn.EditValue = "Include" Then
+        'Me.TBPersenPPn.Properties.ReadOnly = True
+        'Me.TBPersenPPn.EditValue = 0
+        'Me.RBPPn.EditValue = "Non PPn"
 
-            XtraMessageBox.Show("PPn Tidak Boleh Include", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Exit Sub
+        'XtraMessageBox.Show("PPn Tidak Boleh Include", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        'Exit Sub
+        If Me.RBPPn.EditValue = "Include" Then
+            Me.TBPersenPPn.Properties.ReadOnly = False
+            Me.TBPersenPPn.EditValue = MainModule.PersenPPn
         ElseIf Me.RBPPn.EditValue = "Exclude" Then
             Me.TBPersenPPn.Properties.ReadOnly = False
             Me.TBPersenPPn.EditValue = MainModule.PersenPPn

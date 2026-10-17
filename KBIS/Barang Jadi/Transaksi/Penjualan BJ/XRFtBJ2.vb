@@ -25,17 +25,17 @@ Public Class XRFtBJ2
         Me.DataSource = DsLap
 
         Me.LBJualID.Text = Bind.Item("JualID").ToString
-        Me.LBKode.Text = Bind.Item("Kode").ToString
-        Me.LBKotaTgl.Text = MainModule.Kota & ", " & Format(CDate(Bind.Item("Tanggal")), "dd/MM/yyyy")
+        'Me.LBKode.Text = Bind.Item("Kode").ToString
+        'Me.LBKotaTgl.Text = MainModule.Kota & ", " & Format(CDate(Bind.Item("Tanggal")), "dd/MM/yyyy")
         Me.LBDueDate.Text = Format(CDate(Bind.Item("DueDate")), "dd/MM/yyyy")
         Me.LBCust.Text = Bind.Item("Cust").ToString
-        Me.LBAlamat.Text = Bind.Item("Alamat").ToString
-        Me.LBSJ.Text = "PO : " & Bind.Item("SJID").ToString
-        If Bind.Item("Promo").ToString = "" Then
-            Me.LBPromo.Text = "Promo : "
-        Else
-            Me.LBPromo.Text = "Promo : " & Bind.Item("Promo").ToString & " Paket : " & Bind.Item("Paket").ToString
-        End If
+        Me.LBAlamat2.Text = Bind.Item("Alamat").ToString
+        'Me.LBSJ.Text = "PO : " & Bind.Item("SJID").ToString
+        'If Bind.Item("Promo").ToString = "" Then
+        '    Me.LBPromo.Text = "Promo : "
+        'Else
+        '    Me.LBPromo.Text = "Promo : " & Bind.Item("Promo").ToString & " Paket : " & Bind.Item("Paket").ToString
+        'End If
         Me.LBKet.Text = "Keterangan : " & Bind.Item("Ket").ToString
 
         Me.LBUser.Text = MainModule.LoginAktif
@@ -46,7 +46,7 @@ Public Class XRFtBJ2
         Me.LBTotAkhir.Text = String.Format("{0:#,##0.00;(#,##0.00)}", CDec(Bind.Item("TotAkhir").ToString))
 
         Me.LBBarang.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "T_JualBJDtl.Barang")})
-        Me.LBDos.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "T_JualBJDtl.Dos", "{0:n0}")})
+        'Me.LBDos.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "T_JualBJDtl.Dos", "{0:n0}")})
         Me.LBPsg.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "T_JualBJDtl.Psg", "{0:n0}")})
         Me.LBHarSat.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "T_JualBJDtl.HarSat", "{0:n2}")})
         Me.LBDisc.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "T_JualBJDtl.DiscOB", "{0:n3}")})
@@ -62,10 +62,10 @@ Public Class XRFtBJ2
         'SumDisc.Running = DevExpress.XtraReports.UI.SummaryRunning.Page
         'Me.LBTotDisc.Summary = SumDisc
 
-        Me.LBTotDos.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "T_JualBJDtl.Dos", "{0:n0}")})
+        '.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "T_JualBJDtl.Dos", "{0:n0}")})
         SumDos.FormatString = "{0:n0}"
         SumDos.Running = DevExpress.XtraReports.UI.SummaryRunning.Page
-        Me.LBTotDos.Summary = SumDos
+        'Me.LBTotDos.Summary = SumDos
 
         Me.LBTotPsg.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", Nothing, "T_JualBJDtl.Psg", "{0:n0}")})
         SumPsg.FormatString = "{0:n0}"

@@ -44,10 +44,7 @@ Partial Public Class XRFtBebas
         Me.LBCust = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LBTanggal = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LBPerusahaan = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LBKode = New DevExpress.XtraReports.UI.XRLabel()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.LBKet = New DevExpress.XtraReports.UI.XRRichText()
@@ -68,6 +65,11 @@ Partial Public Class XRFtBebas
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.PGambar = New DevExpress.XtraReports.UI.XRPictureBox()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.LBAlamat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LBKet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LBTT1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -179,16 +181,16 @@ Partial Public Class XRFtBebas
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLine2, Me.XrLine1, Me.XrLabel18, Me.XrLabel12, Me.XrLabel16, Me.XrLabel15, Me.XLBHarga, Me.XLBJml, Me.LBAlamat, Me.LBTipePPn, Me.LBCust, Me.XrLabel4, Me.XrLabel6, Me.LBTanggal, Me.LBPerusahaan, Me.XrLabel7, Me.XrLabel1, Me.LBKode})
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel5, Me.XrLabel8, Me.XrLabel9, Me.XrLabel1, Me.PGambar, Me.XrLine2, Me.XrLine1, Me.XrLabel18, Me.XrLabel12, Me.XrLabel16, Me.XrLabel15, Me.XLBHarga, Me.XLBJml, Me.LBAlamat, Me.LBTipePPn, Me.LBCust, Me.XrLabel4, Me.XrLabel6, Me.XrLabel7, Me.LBKode})
         Me.PageHeader.Dpi = 254.0!
-        Me.PageHeader.HeightF = 459.7336!
+        Me.PageHeader.HeightF = 554.9836!
         Me.PageHeader.Name = "PageHeader"
         '
         'XrLine2
         '
         Me.XrLine2.Dpi = 254.0!
         Me.XrLine2.LineWidth = 3
-        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(25.08405!, 454.7336!)
+        Me.XrLine2.LocationFloat = New DevExpress.Utils.PointFloat(25.08405!, 540.7336!)
         Me.XrLine2.Name = "XrLine2"
         Me.XrLine2.SizeF = New System.Drawing.SizeF(2014.88!, 5.0!)
         '
@@ -196,14 +198,14 @@ Partial Public Class XRFtBebas
         '
         Me.XrLine1.Dpi = 254.0!
         Me.XrLine1.LineWidth = 3
-        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(25.07293!, 403.5628!)
+        Me.XrLine1.LocationFloat = New DevExpress.Utils.PointFloat(25.07293!, 489.5628!)
         Me.XrLine1.Name = "XrLine1"
         Me.XrLine1.SizeF = New System.Drawing.SizeF(2014.88!, 5.0!)
         '
         'XrLabel18
         '
         Me.XrLabel18.Dpi = 254.0!
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(1238.385!, 409.401!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(1238.385!, 495.401!)
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel18.SizeF = New System.Drawing.SizeF(214.3125!, 45.19092!)
@@ -214,7 +216,7 @@ Partial Public Class XRFtBebas
         'XrLabel12
         '
         Me.XrLabel12.Dpi = 254.0!
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(24.07285!, 409.4012!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(24.07285!, 495.4012!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel12.SizeF = New System.Drawing.SizeF(81.05399!, 45.19086!)
@@ -225,7 +227,7 @@ Partial Public Class XRFtBebas
         'XrLabel16
         '
         Me.XrLabel16.Dpi = 254.0!
-        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(1053.198!, 409.401!)
+        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(1053.198!, 495.401!)
         Me.XrLabel16.Name = "XrLabel16"
         Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel16.SizeF = New System.Drawing.SizeF(184.228!, 45.19092!)
@@ -236,7 +238,7 @@ Partial Public Class XRFtBebas
         'XrLabel15
         '
         Me.XrLabel15.Dpi = 254.0!
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(105.1268!, 409.401!)
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(105.1268!, 495.401!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel15.SizeF = New System.Drawing.SizeF(947.905!, 45.19092!)
@@ -247,7 +249,7 @@ Partial Public Class XRFtBebas
         'XLBHarga
         '
         Me.XLBHarga.Dpi = 254.0!
-        Me.XLBHarga.LocationFloat = New DevExpress.Utils.PointFloat(1453.01!, 409.401!)
+        Me.XLBHarga.LocationFloat = New DevExpress.Utils.PointFloat(1453.01!, 495.401!)
         Me.XLBHarga.Name = "XLBHarga"
         Me.XLBHarga.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XLBHarga.SizeF = New System.Drawing.SizeF(275.167!, 45.19092!)
@@ -258,7 +260,7 @@ Partial Public Class XRFtBebas
         'XLBJml
         '
         Me.XLBJml.Dpi = 254.0!
-        Me.XLBJml.LocationFloat = New DevExpress.Utils.PointFloat(1728.344!, 409.401!)
+        Me.XLBJml.LocationFloat = New DevExpress.Utils.PointFloat(1728.344!, 495.401!)
         Me.XLBJml.Name = "XLBJml"
         Me.XLBJml.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XLBJml.SizeF = New System.Drawing.SizeF(309.6846!, 45.19092!)
@@ -270,17 +272,17 @@ Partial Public Class XRFtBebas
         '
         Me.LBAlamat.Dpi = 254.0!
         Me.LBAlamat.Font = New System.Drawing.Font("Abadi MT Condensed Light", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBAlamat.LocationFloat = New DevExpress.Utils.PointFloat(55.4273!, 276.9874!)
+        Me.LBAlamat.LocationFloat = New DevExpress.Utils.PointFloat(363.5329!, 409.9457!)
         Me.LBAlamat.Name = "LBAlamat"
         Me.LBAlamat.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.LBAlamat.SerializableRtfString = resources.GetString("LBAlamat.SerializableRtfString")
-        Me.LBAlamat.SizeF = New System.Drawing.SizeF(895.1683!, 98.10745!)
+        Me.LBAlamat.SizeF = New System.Drawing.SizeF(624.205!, 79.58664!)
         Me.LBAlamat.StylePriority.UsePadding = False
         '
         'LBTipePPn
         '
         Me.LBTipePPn.Dpi = 254.0!
-        Me.LBTipePPn.LocationFloat = New DevExpress.Utils.PointFloat(1239.407!, 227.2166!)
+        Me.LBTipePPn.LocationFloat = New DevExpress.Utils.PointFloat(1288.855!, 283.4764!)
         Me.LBTipePPn.Name = "LBTipePPn"
         Me.LBTipePPn.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.LBTipePPn.SizeF = New System.Drawing.SizeF(711.7291!, 49.0!)
@@ -289,76 +291,43 @@ Partial Public Class XRFtBebas
         'LBCust
         '
         Me.LBCust.Dpi = 254.0!
-        Me.LBCust.LocationFloat = New DevExpress.Utils.PointFloat(55.42728!, 226.9875!)
+        Me.LBCust.LocationFloat = New DevExpress.Utils.PointFloat(363.5329!, 360.9457!)
         Me.LBCust.Name = "LBCust"
         Me.LBCust.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.LBCust.SizeF = New System.Drawing.SizeF(796.3123!, 49.0!)
+        Me.LBCust.SizeF = New System.Drawing.SizeF(514.7659!, 49.0!)
         Me.LBCust.Text = "Customer"
         '
         'XrLabel4
         '
         Me.XrLabel4.Dpi = 254.0!
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(1024.948!, 177.7964!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(1074.396!, 213.0562!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(214.3125!, 49.0!)
-        Me.XrLabel4.Text = "No. Faktur"
+        Me.XrLabel4.Text = "No. Invoice"
         '
         'XrLabel6
         '
         Me.XrLabel6.Dpi = 254.0!
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(1024.948!, 227.2166!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(1074.396!, 283.4764!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(214.3125!, 49.0!)
         Me.XrLabel6.Text = "Tipe PPn"
         '
-        'LBTanggal
-        '
-        Me.LBTanggal.Dpi = 254.0!
-        Me.LBTanggal.LocationFloat = New DevExpress.Utils.PointFloat(25.07294!, 101.0498!)
-        Me.LBTanggal.Name = "LBTanggal"
-        Me.LBTanggal.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.LBTanggal.SizeF = New System.Drawing.SizeF(2012.865!, 49.0!)
-        Me.LBTanggal.StylePriority.UseTextAlignment = False
-        Me.LBTanggal.Text = "Tanggal"
-        Me.LBTanggal.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        '
-        'LBPerusahaan
-        '
-        Me.LBPerusahaan.Dpi = 254.0!
-        Me.LBPerusahaan.LocationFloat = New DevExpress.Utils.PointFloat(25.07292!, 0.0!)
-        Me.LBPerusahaan.Multiline = True
-        Me.LBPerusahaan.Name = "LBPerusahaan"
-        Me.LBPerusahaan.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.LBPerusahaan.SizeF = New System.Drawing.SizeF(733.834!, 150.0498!)
-        '
         'XrLabel7
         '
         Me.XrLabel7.Dpi = 254.0!
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(55.42714!, 177.7964!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(92.56955!, 360.9457!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(219.7009!, 49.0!)
-        Me.XrLabel7.Text = "Kepada"
-        '
-        'XrLabel1
-        '
-        Me.XrLabel1.Dpi = 254.0!
-        Me.XrLabel1.Font = New System.Drawing.Font("Abadi MT Condensed Light", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(25.07292!, 41.62977!)
-        Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(2012.865!, 59.41998!)
-        Me.XrLabel1.StylePriority.UseFont = False
-        Me.XrLabel1.StylePriority.UseTextAlignment = False
-        Me.XrLabel1.Text = "Faktur Penjualan Lain-Lain"
-        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrLabel7.Text = "Nama   :"
         '
         'LBKode
         '
         Me.LBKode.Dpi = 254.0!
-        Me.LBKode.LocationFloat = New DevExpress.Utils.PointFloat(1239.407!, 177.7964!)
+        Me.LBKode.LocationFloat = New DevExpress.Utils.PointFloat(1288.855!, 213.0562!)
         Me.LBKode.Name = "LBKode"
         Me.LBKode.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.LBKode.SizeF = New System.Drawing.SizeF(711.7291!, 49.0!)
@@ -567,6 +536,57 @@ Partial Public Class XRFtBebas
         Me.ReportFooter.HeightF = 0.0!
         Me.ReportFooter.Name = "ReportFooter"
         '
+        'PGambar
+        '
+        Me.PGambar.Dpi = 254.0!
+        Me.PGambar.Image = CType(resources.GetObject("PGambar.Image"), System.Drawing.Image)
+        Me.PGambar.LocationFloat = New DevExpress.Utils.PointFloat(74.04474!, 0.0!)
+        Me.PGambar.Name = "PGambar"
+        Me.PGambar.SizeF = New System.Drawing.SizeF(632.834!, 213.0562!)
+        Me.PGambar.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage
+        '
+        'XrLabel1
+        '
+        Me.XrLabel1.Dpi = 254.0!
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(92.56955!, 409.9457!)
+        Me.XrLabel1.Name = "XrLabel1"
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(219.7009!, 49.0!)
+        Me.XrLabel1.Text = "Alamat :"
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.Dpi = 254.0!
+        Me.XrLabel5.Font = New System.Drawing.Font("Abadi MT Condensed Light", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(92.56955!, 213.0562!)
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(873.1249!, 48.00002!)
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.Text = "JL MATARAM NO 6, JAKARTA SELATAN, DKI JAKARTA, 12110"
+        '
+        'XrLabel8
+        '
+        Me.XrLabel8.Dpi = 254.0!
+        Me.XrLabel8.Font = New System.Drawing.Font("Abadi MT Condensed Light", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(92.56955!, 261.0562!)
+        Me.XrLabel8.Name = "XrLabel8"
+        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(873.1249!, 48.0!)
+        Me.XrLabel8.StylePriority.UseFont = False
+        Me.XrLabel8.Text = "Email : yuda.diharta@praktis.co"
+        '
+        'XrLabel9
+        '
+        Me.XrLabel9.Dpi = 254.0!
+        Me.XrLabel9.Font = New System.Drawing.Font("Abadi MT Condensed Light", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(92.56955!, 309.0562!)
+        Me.XrLabel9.Name = "XrLabel9"
+        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(873.1249!, 48.00003!)
+        Me.XrLabel9.StylePriority.UseFont = False
+        Me.XrLabel9.Text = "01.490.535.0-641.000"
+        '
         'XRFtBebas
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.PageFooter, Me.ReportFooter})
@@ -597,10 +617,7 @@ Partial Public Class XRFtBebas
     Friend WithEvents LBCust As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LBTanggal As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LBPerusahaan As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LBKode As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LBAlamat As DevExpress.XtraReports.UI.XRRichText
     Friend WithEvents XrLine2 As DevExpress.XtraReports.UI.XRLine
@@ -635,4 +652,9 @@ Partial Public Class XRFtBebas
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
+    Friend WithEvents PGambar As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
 End Class

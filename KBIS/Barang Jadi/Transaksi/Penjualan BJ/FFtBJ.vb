@@ -66,6 +66,7 @@ Public Class FFtBJ
         Me.SLUGrup.Properties.ReadOnly = True
         Me.DTPTanggal.Properties.ReadOnly = True
         Me.SLUSJID.Properties.ReadOnly = True
+        'Me.TBPO.Properties.ReadOnly = True
         Me.SLUSales.Properties.ReadOnly = True
         Me.SLUGd.Properties.ReadOnly = True
         Me.SLUCust.Properties.ReadOnly = True
@@ -156,7 +157,7 @@ Public Class FFtBJ
             End Try
             cmsl.Fill(DsMaster, "M_SalesLUE" & Gol)
         Else
-            cmsl = New SqlDataAdapter("Select SalID,Area,Nama From M_Sales Where Aktif='True' and Gol='Lokal'", koneksi)
+            cmsl = New SqlDataAdapter("Select SalID,Area,Nama From M_Sales Where Aktif='True'", koneksi)
             cmsl.TableMappings.Add("Table", "M_SalesLUE" & Gol)
             Try
                 DsMaster.Tables("M_SalesLUE" & Gol).Clear()
@@ -183,22 +184,22 @@ Public Class FFtBJ
         Me.SLUMtUang.Properties.DisplayMember = "MtUang"
         Me.SLUMtUang.Properties.ValueMember = "MtUang"
 
-        cmsl = New SqlDataAdapter("Select POID As SJID,POCust,SalID,H.CustID,C.JnsCustID,DiscCust,Harga,0 as Ongkir,MtUang,Kat,Grup From T_POBJJO H Inner Join M_Cust C On H.CustID=C.CustID where stsKirim='False' or POID = (Select SJID From T_JualBJ where JualID ='" & Me.TBID.EditValue & "')", koneksi)
-        Me.GridColumn124.Visible = True
-        cmsl.TableMappings.Add("Table", "T_SJ" & Gol)
+        'cmsl = New SqlDataAdapter("Select POID As SJID,POCust,SalID,H.CustID,C.JnsCustID,DiscCust,Harga,0 as Ongkir,MtUang,Kat,Grup From T_POBJJO H Inner Join M_Cust C On H.CustID=C.CustID where stsKirim='False' or POID = (Select SJID From T_JualBJ where JualID ='" & Me.TBID.EditValue & "')", koneksi)
+        ''Me.GridColumn124.Visible = True
+        'cmsl.TableMappings.Add("Table", "T_SJ" & Gol)
 
-        'MsgBox(Me.TBID.EditValue)
+        ''MsgBox(Me.TBID.EditValue)
 
-        Try
-            DsMaster.Tables("T_SJ" & Gol).Clear()
-        Catch ex As Exception
+        'Try
+        '    DsMaster.Tables("T_SJ" & Gol).Clear()
+        'Catch ex As Exception
 
-        End Try
-        cmsl.Fill(DsMaster, "T_SJ" & Gol)
+        'End Try
+        'cmsl.Fill(DsMaster, "T_SJ" & Gol)
 
-        Me.SLUSJID.Properties.DataSource = DsMaster.Tables("T_SJ" & Gol)
-        Me.SLUSJID.Properties.DisplayMember = "SJID"
-        Me.SLUSJID.Properties.ValueMember = "SJID"
+        'Me.SLUSJID.Properties.DataSource = DsMaster.Tables("T_SJ" & Gol)
+        'Me.SLUSJID.Properties.DisplayMember = "SJID"
+        'Me.SLUSJID.Properties.ValueMember = "SJID"
 
         'Me.SLUMtUang.EditValue = "IDR"
     End Sub
@@ -520,18 +521,18 @@ Public Class FFtBJ
 
         Indicator = "100"
 
-        If Manual = True Then
-            Me.TBID.Properties.ReadOnly = False
-            Me.TBID.EditValue = ""
-            'Me.TBTamDiscP.Properties.ReadOnly = False
-            'Me.TBTamDiscRp.Properties.ReadOnly = False
-        Else
-            Me.TBID.Properties.ReadOnly = True
-            Me.TBID.EditValue = "--"
+        'If Manual = True Then
+        '    Me.TBID.Properties.ReadOnly = False
+        '    Me.TBID.EditValue = ""
+        '    'Me.TBTamDiscP.Properties.ReadOnly = False
+        '    'Me.TBTamDiscRp.Properties.ReadOnly = False
+        'Else
+        '    Me.TBID.Properties.ReadOnly = True
+        '    Me.TBID.EditValue = "--"
 
-            'Me.TBTamDiscP.Properties.ReadOnly = True
-            'Me.TBTamDiscRp.Properties.ReadOnly = True
-        End If
+        'Me.TBTamDiscP.Properties.ReadOnly = True
+        'Me.TBTamDiscRp.Properties.ReadOnly = True
+        'End If
 
         Me.TBKode.EditValue = "--"
         Me.SLUGrup.EditValue = ""
@@ -617,6 +618,7 @@ Public Class FFtBJ
             Me.TBID.EditValue = Me.GridView2.GetFocusedDataRow.Item("JualID")
             Me.TBKode.EditValue = Me.GridView2.GetFocusedDataRow.Item("Kode")
             Me.SLUGrup.EditValue = Me.GridView2.GetFocusedDataRow.Item("Grup")
+            Me.TBPO.EditValue = Me.GridView2.GetFocusedDataRow.Item("SJID")
 
             cmsl = New SqlDataAdapter("Select GdID,Nama From M_Gudang Where Aktif='True' and Grup='" & Me.SLUGrup.EditValue & "'", koneksi)
             cmsl.TableMappings.Add("Table", "M_GudangLUE" & Gol)
@@ -632,7 +634,7 @@ Public Class FFtBJ
             Me.SLUGd.Properties.ValueMember = "GdID"
 
             cmsl = New SqlDataAdapter("Select POID As SJID,POCust,SalID,H.CustID,C.JnsCustID,DiscCust,Harga,0 as Ongkir,MtUang,Kat,Grup From T_POBJJO H Inner Join M_Cust C On H.CustID=C.CustID where stsKirim='False' or POID = (Select SJID From T_JualBJ where JualID ='" & Me.TBID.EditValue & "')", koneksi)
-            Me.GridColumn124.Visible = True
+            '.Visible = True
             cmsl.TableMappings.Add("Table", "T_SJ" & Gol)
 
             Try
@@ -682,7 +684,7 @@ Public Class FFtBJ
                 Me.SLUGd.Properties.ValueMember = "GdID"
             End If
 
-            JT = DsMaster.Tables("M_CustFt" & Gol).Select("CustID = '" & Me.SLUCust.EditValue & "'")(0).Item("JT")
+            'JT = DsMaster.Tables("M_CustFt" & Gol).Select("CustID = '" & Me.SLUCust.EditValue & "'")(0).Item("JT")
             Me.CBOJnsFt.EditValue = Me.GridView2.GetFocusedDataRow.Item("JnsTrans")
             JnsLama = Me.GridView2.GetFocusedDataRow.Item("Jenis")
             Area = Me.GridView2.GetFocusedDataRow.Item("Area")
@@ -877,8 +879,48 @@ Public Class FFtBJ
     End Sub
 
     Private Sub BVBExit_ItemClick(sender As Object, e As DevExpress.XtraBars.Ribbon.BackstageViewItemEventArgs) Handles BVBExit.ItemClick
-        CekSave = False
-        Me.Dispose()
+        koneksi.Close()
+
+        Dim Kode As String
+        Kode = Me.GridView2.GetFocusedDataRow.Item("JualID")
+
+        FillDt()
+
+        Dim fc As Integer
+        Dim a : For a = 0 To Me.GridView2.RowCount - 1
+            If Me.GridView2.GetRowCellValue(a, "JualID") = Kode Then
+                fc = a
+                Exit For
+            End If
+        Next
+
+        Me.GridView2.FocusedRowHandle = fc
+
+        Dim bind As New Collection
+        bind.Add(Me.GridView2.GetFocusedDataRow.Item("JualID"), "JualID")
+        bind.Add(Me.GridView2.GetFocusedDataRow.Item("Kode"), "Kode")
+        bind.Add(Me.GridView2.GetFocusedDataRow.Item("Tanggal"), "Tanggal")
+        bind.Add(Me.GridView2.GetFocusedDataRow.Item("Customer"), "Cust")
+        bind.Add(Me.GridView2.GetFocusedDataRow.Item("Alamat") & vbCrLf & Me.GridView2.GetFocusedDataRow.Item("Kota"), "Alamat")
+        bind.Add(Me.GridView2.GetFocusedDataRow.Item("DueDate"), "DueDate")
+        bind.Add(Me.GridView2.GetFocusedDataRow.Item("SJID"), "SJID")
+        bind.Add(Me.GridView2.GetFocusedDataRow.Item("Promo"), "Promo")
+        bind.Add(Me.GridView2.GetFocusedDataRow.Item("Paket"), "Paket")
+        bind.Add(Me.GridView2.GetFocusedDataRow.Item("Ket"), "Ket")
+        bind.Add(Me.GridView2.GetFocusedDataRow.Item("TotRpDiscCust") + Me.GridView2.GetFocusedDataRow.Item("TotRpDiscOB") + Me.GridView2.GetFocusedDataRow.Item("TotRpDiscL") + Me.GridView2.GetFocusedDataRow.Item("RpDiscP") + Me.GridView2.GetFocusedDataRow.Item("DiscRp"), "TotDisc")
+
+        If Me.GridView2.GetFocusedDataRow.Item("TipePPn") <> "Exclude" Then
+            bind.Add(Me.GridView2.GetFocusedDataRow.Item("TotAkhir") - (Me.GridView2.GetFocusedDataRow.Item("TotSbDisc") - Me.GridView2.GetFocusedDataRow.Item("TotRpDiscCust") - Me.GridView2.GetFocusedDataRow.Item("TotRpDiscOB") - Me.GridView2.GetFocusedDataRow.Item("TotRpDiscL") - (Me.GridView2.GetFocusedDataRow.Item("RpDiscP") + Me.GridView2.GetFocusedDataRow.Item("DiscRp"))), "TotByExp")
+        Else
+            bind.Add(Me.GridView2.GetFocusedDataRow.Item("TotAkhir") - (Me.GridView2.GetFocusedDataRow.Item("TotSbDisc") - Me.GridView2.GetFocusedDataRow.Item("TotRpDiscCust") - Me.GridView2.GetFocusedDataRow.Item("TotRpDiscOB") - Me.GridView2.GetFocusedDataRow.Item("TotRpDiscL") - (Me.GridView2.GetFocusedDataRow.Item("RpDiscP") + Me.GridView2.GetFocusedDataRow.Item("DiscRp")) + Me.GridView2.GetFocusedDataRow.Item("TotPPn")), "TotByExp")
+        End If
+        bind.Add(Me.GridView2.GetFocusedDataRow.Item("TotPPn"), "TotPPn")
+        bind.Add(Me.GridView2.GetFocusedDataRow.Item("TotAkhir"), "TotAkhir")
+
+        bind.Add(MainModule.PilihUkuran, "Ukuran")
+
+        Dim XR As New XRFtBJ3
+        XR.InitializeData(bind)
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
@@ -969,9 +1011,10 @@ Public Class FFtBJ
                     .Parameters.Add("@MnlInsUpd", SqlDbType.Bit).Value = MnlInsUpd
                     .Parameters.Add("@KdInput", SqlDbType.VarChar).Value = Me.TBID.EditValue
                     .Parameters.Add("@PeriodID", SqlDbType.Int).Value = MainModule.periodAktif
+                    '.Parameters.Add("@Kode", SqlDbType.VarChar).Value = Me.TBKode.EditValue
                     .Parameters.Add("@TipeDoc", SqlDbType.Int).Value = 15
                     .Parameters.Add("@CodeID", SqlDbType.VarChar).Value = CodeID
-                    .Parameters.Add("@SJID", SqlDbType.VarChar).Value = Me.SLUSJID.EditValue
+                    .Parameters.Add("@SJID", SqlDbType.VarChar).Value = Me.TBPO.EditValue
                     .Parameters.Add("@JnsTrans", SqlDbType.VarChar).Value = Me.CBOJnsFt.EditValue
                     .Parameters.Add("@NoPjk", SqlDbType.VarChar).Value = Me.TBPajak.EditValue
                     .Parameters.Add("@PromoID", SqlDbType.VarChar).Value = Me.SLUPromo.EditValue
@@ -1053,7 +1096,7 @@ Public Class FFtBJ
                                     .Parameters.Add("@GdID", SqlDbType.VarChar).Value = Me.SLUGd.EditValue
                                     .Parameters.Add("@Kode", SqlDbType.VarChar).Value = Me.TBID.EditValue
                                     .Parameters.Add("@Tgl", SqlDbType.Date).Value = Me.DTPTanggal.EditValue
-                                    .Parameters.Add("@SJID", SqlDbType.VarChar).Value = Me.SLUSJID.EditValue
+                                    .Parameters.Add("@SJID", SqlDbType.VarChar).Value = Me.TBPO.EditValue
                                     .Parameters.Add("@SJIDD", SqlDbType.Int).Value = Me.GridView1.GetRowCellValue(i, "SJIDD")
                                     .Parameters.Add("@ArtCode", SqlDbType.VarChar).Value = Me.GridView1.GetRowCellValue(i, "ArtCode")
                                     '.Parameters.Add("@ArtName", SqlDbType.VarChar).Value = Me.GridView1.GetRowCellValue(i, "ArtName")
@@ -1170,7 +1213,7 @@ Public Class FFtBJ
                     .Parameters.Add("@Kode", SqlDbType.VarChar).Value = Me.TBKode.EditValue
                     .Parameters.Add("@PeriodID", SqlDbType.Int).Value = MainModule.periodAktif
                     .Parameters.Add("@TipeDoc", SqlDbType.Int).Value = 15
-                    .Parameters.Add("@SJID", SqlDbType.VarChar).Value = Me.SLUSJID.EditValue
+                    .Parameters.Add("@SJID", SqlDbType.VarChar).Value = Me.TBPO.EditValue
                     .Parameters.Add("@JnsTransLama", SqlDbType.VarChar).Value = JnsLama
                     .Parameters.Add("@JnsTrans", SqlDbType.VarChar).Value = Me.CBOJnsFt.EditValue
                     .Parameters.Add("@NoPjk", SqlDbType.VarChar).Value = Me.TBPajak.EditValue
@@ -1290,7 +1333,7 @@ Public Class FFtBJ
                                         .Parameters.Add("@GdID", SqlDbType.VarChar).Value = Me.SLUGd.EditValue
                                         .Parameters.Add("@Kode", SqlDbType.VarChar).Value = Me.TBID.EditValue
                                         .Parameters.Add("@Tgl", SqlDbType.Date).Value = Me.DTPTanggal.EditValue
-                                        .Parameters.Add("@SJID", SqlDbType.VarChar).Value = Me.SLUSJID.EditValue
+                                        .Parameters.Add("@SJID", SqlDbType.VarChar).Value = Me.TBPO.EditValue
                                         .Parameters.Add("@SJIDD", SqlDbType.Int).Value = Me.GridView1.GetRowCellValue(i, "SJIDD")
                                         .Parameters.Add("@ArtCode", SqlDbType.VarChar).Value = Me.GridView1.GetRowCellValue(i, "ArtCode")
                                         '.Parameters.Add("@ArtName", SqlDbType.VarChar).Value = Me.GridView1.GetRowCellValue(i, "ArtName")
@@ -1347,7 +1390,7 @@ Public Class FFtBJ
                                         .Parameters.Add("@Kode", SqlDbType.VarChar).Value = Me.TBID.EditValue
                                         .Parameters.Add("@GdID", SqlDbType.VarChar).Value = Me.SLUGd.EditValue
                                         .Parameters.Add("@Tgl", SqlDbType.Date).Value = Me.DTPTanggal.EditValue
-                                        .Parameters.Add("@SJID", SqlDbType.VarChar).Value = Me.SLUSJID.EditValue
+                                        .Parameters.Add("@SJID", SqlDbType.VarChar).Value = Me.TBPO.EditValue
                                         .Parameters.Add("@SJIDD", SqlDbType.Int).Value = Me.GridView1.GetRowCellValue(i, "SJIDD")
                                         .Parameters.Add("@ArtCode", SqlDbType.VarChar).Value = Me.GridView1.GetRowCellValue(i, "ArtCode")
                                         '.Parameters.Add("@ArtName", SqlDbType.VarChar).Value = Me.GridView1.GetRowCellValue(i, "ArtName")
@@ -1500,30 +1543,30 @@ Public Class FFtBJ
 
     Private Sub SLUGrup_Leave(sender As Object, e As EventArgs) Handles SLUGrup.Leave
         If Me.SLUGrup.Properties.ReadOnly = False Then
-            If Me.SLUSales.EditValue <> "" Then
-                Dim cmsl As SqlDataAdapter
-                cmsl = New SqlDataAdapter("Select G.GdID,Nama From M_Gudang G Inner Join M_SalGd SG On G.GdID=SG.GdID Where SG.SalID='" & Me.SLUSales.EditValue & "' and Grup='" & Me.SLUGrup.EditValue & "' and G.Aktif='True' and SG.Aktif='True'", koneksi)
-                cmsl.TableMappings.Add("Table", "M_GudangLUE" & Gol)
-                Try
-                    DsMaster.Tables("M_GudangLUE" & Gol).Clear()
-                Catch ex As Exception
+            'If Me.SLUSales.EditValue <> "" Then
+            Dim cmsl As SqlDataAdapter
+            cmsl = New SqlDataAdapter("Select G.GdID,Nama From M_Gudang G Inner Join M_SalGd SG On G.GdID=SG.GdID Where SG.SalID='" & Me.SLUSales.EditValue & "' and Grup='" & Me.SLUGrup.EditValue & "' and G.Aktif='True' and SG.Aktif='True'", koneksi)
+            cmsl.TableMappings.Add("Table", "M_GudangLUE" & Gol)
+            Try
+                DsMaster.Tables("M_GudangLUE" & Gol).Clear()
+            Catch ex As Exception
 
-                End Try
-                cmsl.Fill(DsMaster, "M_GudangLUE" & Gol)
+            End Try
+            cmsl.Fill(DsMaster, "M_GudangLUE" & Gol)
 
-                Me.SLUGd.Properties.DataSource = DsMaster.Tables("M_GudangLUE" & Gol)
-                Me.SLUGd.Properties.DisplayMember = "Nama"
-                Me.SLUGd.Properties.ValueMember = "GdID"
-            End If
+            Me.SLUGd.Properties.DataSource = DsMaster.Tables("M_GudangLUE" & Gol)
+            Me.SLUGd.Properties.DisplayMember = "Nama"
+            Me.SLUGd.Properties.ValueMember = "GdID"
+            'End If
 
-            If Manual = False Then
-                Dim i : For i = Me.GridView1.RowCount - 1 To 0 Step -1
-                    ReDim Preserve arrPar(arrPar.GetUpperBound(0) + 1)
-                    arrPar(arrPar.GetUpperBound(0)) = Me.GridView1.GetRowCellValue(i, "JualIDD")
+            'If Manual = False Then
+            '    Dim i : For i = Me.GridView1.RowCount - 1 To 0 Step -1
+            '        ReDim Preserve arrPar(arrPar.GetUpperBound(0) + 1)
+            '        arrPar(arrPar.GetUpperBound(0)) = Me.GridView1.GetRowCellValue(i, "JualIDD")
 
-                    Me.GridView1.DeleteRow(i)
-                Next
-            End If
+            '        Me.GridView1.DeleteRow(i)
+            '    Next
+            'End If
         End If
     End Sub
 
@@ -1547,7 +1590,7 @@ Public Class FFtBJ
                     Me.SLUCust.Properties.DisplayMember = "Nama"
                     Me.SLUCust.Properties.ValueMember = "CustID"
 
-                    cmsl = New SqlDataAdapter("Select G.GdID,Nama From M_Gudang G Inner Join M_SalGd SG On G.GdID=SG.GdID Where SG.SalID='" & Me.SLUSales.EditValue & "' and Grup='" & Me.SLUGrup.EditValue & "' and G.Aktif='True' and SG.Aktif='True'", koneksi)
+                    cmsl = New SqlDataAdapter("Select G.GdID,Nama From M_Gudang G Inner Join M_SalGd SG On G.GdID=SG.GdID Where  Grup='" & Me.SLUGrup.EditValue & "' and G.Aktif='True' and SG.Aktif='True'", koneksi)
                     cmsl.TableMappings.Add("Table", "M_GudangLUE" & Gol)
                     Try
                         DsMaster.Tables("M_GudangLUE" & Gol).Clear()
@@ -1629,152 +1672,152 @@ Public Class FFtBJ
         End If
     End Sub
 
-    Private Sub SLUSJID_Leave(sender As Object, e As EventArgs) Handles SLUSJID.Leave
-        If Not IsDBNull(Me.SLUSJID.EditValue) And Me.SLUSJID.EditValue <> "" And Me.SLUSJID.Properties.ReadOnly = False Then
-            Try
-                Dim i : For i = Me.GridView1.RowCount - 1 To 0 Step -1
-                    ReDim Preserve arrPar(arrPar.GetUpperBound(0) + 1)
-                    arrPar(arrPar.GetUpperBound(0)) = Me.GridView1.GetRowCellValue(i, "JualIDD")
-                    Me.GridView1.DeleteRow(i)
-                Next
+    'Private Sub SLUSJID_Leave(sender As Object, e As EventArgs) Handles SLUSJID.Leave
+    '    If Not IsDBNull(Me.SLUSJID.EditValue) And Me.SLUSJID.EditValue <> "" And Me.SLUSJID.Properties.ReadOnly = False Then
+    '        Try
+    '            Dim i : For i = Me.GridView1.RowCount - 1 To 0 Step -1
+    '                ReDim Preserve arrPar(arrPar.GetUpperBound(0) + 1)
+    '                arrPar(arrPar.GetUpperBound(0)) = Me.GridView1.GetRowCellValue(i, "JualIDD")
+    '                Me.GridView1.DeleteRow(i)
+    '            Next
 
-                Dim x : For x = Me.GridView6.RowCount - 1 To 0 Step -1
-                    ReDim Preserve arrPar2(arrPar2.GetUpperBound(0) + 1)
-                    arrPar2(arrPar2.GetUpperBound(0)) = Me.GridView6.GetRowCellValue(x, "JualIDD")
+    '            Dim x : For x = Me.GridView6.RowCount - 1 To 0 Step -1
+    '                ReDim Preserve arrPar2(arrPar2.GetUpperBound(0) + 1)
+    '                arrPar2(arrPar2.GetUpperBound(0)) = Me.GridView6.GetRowCellValue(x, "JualIDD")
 
-                    Me.GridView6.DeleteRow(x)
-                Next
+    '                Me.GridView6.DeleteRow(x)
+    '            Next
 
-                Me.SLUGrup.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("Grup")
-                Me.SLUSales.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("SalID")
+    '            Me.SLUGrup.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("Grup")
+    '            Me.SLUSales.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("SalID")
 
-                Dim cmsl As SqlDataAdapter
+    '            Dim cmsl As SqlDataAdapter
 
-                cmsl = New SqlDataAdapter("Select G.GdID,Nama From M_Gudang G Inner Join M_SalGd SG On G.GdID=SG.GdID Where SG.SalID='" & Me.SLUSales.EditValue & "' and Grup='" & Me.SLUGrup.EditValue & "' and G.Aktif='True' and SG.Aktif='True'", koneksi)
-                cmsl.TableMappings.Add("Table", "M_GudangLUE" & Gol)
-                Try
-                    DsMaster.Tables("M_GudangLUE" & Gol).Clear()
-                Catch ex As Exception
+    '            cmsl = New SqlDataAdapter("Select G.GdID,Nama From M_Gudang G Inner Join M_SalGd SG On G.GdID=SG.GdID Where SG.SalID='" & Me.SLUSales.EditValue & "' and Grup='" & Me.SLUGrup.EditValue & "' and G.Aktif='True' and SG.Aktif='True'", koneksi)
+    '            cmsl.TableMappings.Add("Table", "M_GudangLUE" & Gol)
+    '            Try
+    '                DsMaster.Tables("M_GudangLUE" & Gol).Clear()
+    '            Catch ex As Exception
 
-                End Try
-                cmsl.Fill(DsMaster, "M_GudangLUE" & Gol)
+    '            End Try
+    '            cmsl.Fill(DsMaster, "M_GudangLUE" & Gol)
 
-                Me.SLUGd.Properties.DataSource = DsMaster.Tables("M_GudangLUE" & Gol)
-                Me.SLUGd.Properties.DisplayMember = "Nama"
-                Me.SLUGd.Properties.ValueMember = "GdID"
+    '            Me.SLUGd.Properties.DataSource = DsMaster.Tables("M_GudangLUE" & Gol)
+    '            Me.SLUGd.Properties.DisplayMember = "Nama"
+    '            Me.SLUGd.Properties.ValueMember = "GdID"
 
-                cmsl = New SqlDataAdapter("Select C.CustID,C.Nama,Alamat,K.Nama As Kota,JnsCustID,DiscCust,JT,Harga From M_Cust C Inner Join M_SalCust SC On C.CustID=SC.CustID Inner Join M_Kota K On C.KotaID=K.KotaID Where SC.SalID='" & Me.SLUSales.EditValue & "' and C.Aktif='True' and SC.Aktif='True'", koneksi)
-                cmsl.TableMappings.Add("Table", "M_CustFt" & Gol)
-                Try
-                    DsMaster.Tables("M_CustFt" & Gol).Clear()
-                Catch ex As Exception
+    '            cmsl = New SqlDataAdapter("Select C.CustID,C.Nama,Alamat,K.Nama As Kota,JnsCustID,DiscCust,JT,Harga From M_Cust C Inner Join M_SalCust SC On C.CustID=SC.CustID Inner Join M_Kota K On C.KotaID=K.KotaID Where SC.SalID='" & Me.SLUSales.EditValue & "' and C.Aktif='True' and SC.Aktif='True'", koneksi)
+    '            cmsl.TableMappings.Add("Table", "M_CustFt" & Gol)
+    '            Try
+    '                DsMaster.Tables("M_CustFt" & Gol).Clear()
+    '            Catch ex As Exception
 
-                End Try
-                cmsl.Fill(DsMaster, "M_CustFt" & Gol)
+    '            End Try
+    '            cmsl.Fill(DsMaster, "M_CustFt" & Gol)
 
-                Me.SLUCust.Properties.DataSource = DsMaster.Tables("M_CustFt" & Gol)
-                Me.SLUCust.Properties.DisplayMember = "Nama"
-                Me.SLUCust.Properties.ValueMember = "CustID"
+    '            Me.SLUCust.Properties.DataSource = DsMaster.Tables("M_CustFt" & Gol)
+    '            Me.SLUCust.Properties.DisplayMember = "Nama"
+    '            Me.SLUCust.Properties.ValueMember = "CustID"
 
-                Me.SLUCust.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("CustID")
+    '            Me.SLUCust.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("CustID")
 
-                cmsl = New SqlDataAdapter("Select JnsCustID,Jenis,Harga From M_JnsCust Where Aktif='True'", koneksi)
-                cmsl.TableMappings.Add("Table", "M_JnsCustFt" & Gol)
-                cmsl.Fill(DsMaster, "M_JnsCustFt" & Gol)
-                DsMaster.Tables("M_JnsCustFt" & Gol).Clear()
-                cmsl.Fill(DsMaster, "M_JnsCustFt" & Gol)
+    '            cmsl = New SqlDataAdapter("Select JnsCustID,Jenis,Harga From M_JnsCust Where Aktif='True'", koneksi)
+    '            cmsl.TableMappings.Add("Table", "M_JnsCustFt" & Gol)
+    '            cmsl.Fill(DsMaster, "M_JnsCustFt" & Gol)
+    '            DsMaster.Tables("M_JnsCustFt" & Gol).Clear()
+    '            cmsl.Fill(DsMaster, "M_JnsCustFt" & Gol)
 
-                Me.SLUJnsCust.Properties.DataSource = DsMaster.Tables("M_JnsCustFt" & Gol)
-                Me.SLUJnsCust.Properties.DisplayMember = "Jenis"
-                Me.SLUJnsCust.Properties.ValueMember = "JnsCustID"
+    '            Me.SLUJnsCust.Properties.DataSource = DsMaster.Tables("M_JnsCustFt" & Gol)
+    '            Me.SLUJnsCust.Properties.DisplayMember = "Jenis"
+    '            Me.SLUJnsCust.Properties.ValueMember = "JnsCustID"
 
-                Me.SLUJnsCust.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("JnsCustID")
-                Me.TBHarga.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("Harga")
-                JT = DsMaster.Tables("M_CustFt" & Gol).Select("CustID = '" & Me.SLUCust.EditValue & "'")(0).Item("JT")
-                Ongkir = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("Ongkir")
-                Me.TBDiscCust.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("DiscCust")
-                Me.CBOKat.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("Kat")
+    '            Me.SLUJnsCust.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("JnsCustID")
+    '            Me.TBHarga.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("Harga")
+    '            JT = DsMaster.Tables("M_CustFt" & Gol).Select("CustID = '" & Me.SLUCust.EditValue & "'")(0).Item("JT")
+    '            Ongkir = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("Ongkir")
+    '            Me.TBDiscCust.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("DiscCust")
+    '            Me.CBOKat.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("Kat")
 
-                Area = DsMaster.Tables("M_SalesLUE" & Gol).Select("SalID = '" & Me.SLUSales.EditValue & "'")(0).Item("Area")
+    '            Area = DsMaster.Tables("M_SalesLUE" & Gol).Select("SalID = '" & Me.SLUSales.EditValue & "'")(0).Item("Area")
 
-                If Gol <> "Job Order" Then
-                    cmsl = New SqlDataAdapter("Select Distinct H.PromoID,Nama,Metod,Paket From T_Promo H Inner Join T_PromoDtl D On H.PromoID=D.PromoID Where '" & Me.DTPTanggal.EditValue & "'>=TglAwal and '" & Me.DTPTanggal.EditValue & "' <=TglAkhir and JnsCust in ('" & Me.SLUJnsCust.Text & "','%') and DiperhitSaat='Faktur' and Gol='" & Gol & "'", koneksi)
-                    cmsl.TableMappings.Add("Table", "T_PromoFt" & Gol)
-                    cmsl.Fill(DsMaster, "T_PromoFt" & Gol)
-                    DsMaster.Tables("T_PromoFt" & Gol).Clear()
-                    cmsl.Fill(DsMaster, "T_PromoFt" & Gol)
+    '            If Gol <> "Job Order" Then
+    '                cmsl = New SqlDataAdapter("Select Distinct H.PromoID,Nama,Metod,Paket From T_Promo H Inner Join T_PromoDtl D On H.PromoID=D.PromoID Where '" & Me.DTPTanggal.EditValue & "'>=TglAwal and '" & Me.DTPTanggal.EditValue & "' <=TglAkhir and JnsCust in ('" & Me.SLUJnsCust.Text & "','%') and DiperhitSaat='Faktur' and Gol='" & Gol & "'", koneksi)
+    '                cmsl.TableMappings.Add("Table", "T_PromoFt" & Gol)
+    '                cmsl.Fill(DsMaster, "T_PromoFt" & Gol)
+    '                DsMaster.Tables("T_PromoFt" & Gol).Clear()
+    '                cmsl.Fill(DsMaster, "T_PromoFt" & Gol)
 
-                    Me.SLUPromo.Properties.DataSource = DsMaster.Tables("T_PromoFt" & Gol)
-                    Me.SLUPromo.Properties.DisplayMember = "Nama"
-                    Me.SLUPromo.Properties.ValueMember = "PromoID"
+    '                Me.SLUPromo.Properties.DataSource = DsMaster.Tables("T_PromoFt" & Gol)
+    '                Me.SLUPromo.Properties.DisplayMember = "Nama"
+    '                Me.SLUPromo.Properties.ValueMember = "PromoID"
 
-                    Me.SLUPromo.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("PromoID")
+    '                Me.SLUPromo.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("PromoID")
 
-                    If Me.SLUPromo.EditValue = "" Then
-                        Me.TBTamDiscP.Properties.ReadOnly = False
-                        Me.TBTamDiscRp.Properties.ReadOnly = False
-                        Me.TBPaket.EditValue = ""
-                        Metode = ""
-                    Else
-                        Me.TBPaket.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("Paket")
-                        Metode = DsMaster.Tables("T_PromoFt" & Gol).Select("PromoID = '" & Me.SLUPromo.EditValue & "' and Paket='" & Me.TBPaket.EditValue & "'")(0).Item("Metod")
+    '                If Me.SLUPromo.EditValue = "" Then
+    '                    Me.TBTamDiscP.Properties.ReadOnly = False
+    '                    Me.TBTamDiscRp.Properties.ReadOnly = False
+    '                    Me.TBPaket.EditValue = ""
+    '                    Metode = ""
+    '                Else
+    '                    Me.TBPaket.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("Paket")
+    '                    Metode = DsMaster.Tables("T_PromoFt" & Gol).Select("PromoID = '" & Me.SLUPromo.EditValue & "' and Paket='" & Me.TBPaket.EditValue & "'")(0).Item("Metod")
 
-                        Me.TBTamDiscP.Properties.ReadOnly = True
-                        Me.TBTamDiscRp.Properties.ReadOnly = True
+    '                    Me.TBTamDiscP.Properties.ReadOnly = True
+    '                    Me.TBTamDiscRp.Properties.ReadOnly = True
 
-                        Me.TBTamDiscP.EditValue = 0
-                        Me.TBTamDiscRp.EditValue = 0
-                    End If
+    '                    Me.TBTamDiscP.EditValue = 0
+    '                    Me.TBTamDiscRp.EditValue = 0
+    '                End If
 
-                    If Metode = "Gratis Barang" Then
-                        Me.LCIFree.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-                    Else
-                        Me.LCIFree.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                    End If
+    '                If Metode = "Gratis Barang" Then
+    '                    Me.LCIFree.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+    '                Else
+    '                    Me.LCIFree.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+    '                End If
 
-                    Me.RBPPn.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("TipePPn")
-                    Me.TBPersenPPn.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("PersenPPn")
-                    stsPPn = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("stsPPn")
+    '                Me.RBPPn.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("TipePPn")
+    '                Me.TBPersenPPn.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("PersenPPn")
+    '                stsPPn = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("stsPPn")
 
-                    cmsl = New SqlDataAdapter("Select ROW_NUMBER() over (ORDER BY D.ArtCode)*-1 as JualIDD,'" & Me.TBID.EditValue & "' As JualID, SJIDD,D.ArtCode,ArtName,D.SatID,D.Isi,HarDPJ,HarSat,0 as Qty,0 as Dos, 0 as Psg,stsHarga,0.0 As HarSbDisc,DiscOB,0.0 as RpDiscOB,0.0 As RpDiscCust,0.0 As RpDiscL,OngkirSat,Ongkir,0.0 As HarAkhir,0.0 as Selisih,0.0 As SelisihExtra,0 As Urut,'' As NamaLain,'' As Ket From T_SJDtl D Inner Join M_Brg B On D.ArtCode=B.ArtCode Where SJID='" & Me.SLUSJID.EditValue & "' and SisaKirim >0 Order By D.ArtCode Asc", koneksi)
-                Else
-                    'MsgBox("Masuk")
-                    cmsl = New SqlDataAdapter("Select ROW_NUMBER() over (ORDER BY D.ArtCode)*-1 as JualIDD,'" & Me.TBID.EditValue & "' As JualID, POIDD as SJIDD,D.ArtCode,ArtName,D.SatID,D.Isi,Harga As HarDPJ,Harga As HarSat,0 as Qty,0 as Dos, 0 as Psg,stsHarga,0.0 As HarSbDisc,DiscOB,0.0 as RpDiscOB,0.0 As RpDiscCust,0.0 As RpDiscL,0.0 as OngkirSat,0.0 as Ongkir,0.0 As HarAkhir,0.0 as Selisih,0.0 As SelisihExtra,0 As Urut,'' As NamaLain,'' As Ket From T_POBJJODtl D Inner Join M_Brg B On D.ArtCode=B.ArtCode Inner Join M_BrgHarga H On B.ArtCode=H.ArtCode Where Jenis='" & Me.SLUJnsCust.EditValue & "' and MtUang='" & Me.SLUMtUang.EditValue & "' and Gol In ('" & Gol & "','Promosi') and B.Aktif='True' and H.Aktif='True' and POID='" & Me.SLUSJID.EditValue & "' and SisaKirim >0 Order By D.ArtCode Asc", koneksi)
-                End If
+    '                cmsl = New SqlDataAdapter("Select ROW_NUMBER() over (ORDER BY D.ArtCode)*-1 as JualIDD,'" & Me.TBID.EditValue & "' As JualID, SJIDD,D.ArtCode,ArtName,D.SatID,D.Isi,HarDPJ,HarSat,0 as Qty,0 as Dos, 0 as Psg,stsHarga,0.0 As HarSbDisc,DiscOB,0.0 as RpDiscOB,0.0 As RpDiscCust,0.0 As RpDiscL,OngkirSat,Ongkir,0.0 As HarAkhir,0.0 as Selisih,0.0 As SelisihExtra,0 As Urut,'' As NamaLain,'' As Ket From T_SJDtl D Inner Join M_Brg B On D.ArtCode=B.ArtCode Where SJID='" & Me.SLUSJID.EditValue & "' and SisaKirim >0 Order By D.ArtCode Asc", koneksi)
+    '            Else
+    '                MsgBox("Masuk")
+    '                cmsl = New SqlDataAdapter("Select ROW_NUMBER() over (ORDER BY D.ArtCode)*-1 as JualIDD,'" & Me.TBID.EditValue & "' As JualID, POIDD as SJIDD,D.ArtCode,ArtName,D.SatID,D.Isi,Harga As HarDPJ,Harga As HarSat,0 as Qty,0 as Dos, 0 as Psg,stsHarga,0.0 As HarSbDisc,DiscOB,0.0 as RpDiscOB,0.0 As RpDiscCust,0.0 As RpDiscL,0.0 as OngkirSat,0.0 as Ongkir,0.0 As HarAkhir,0.0 as Selisih,0.0 As SelisihExtra,0 As Urut,'' As NamaLain,'' As Ket From T_POBJJODtl D Inner Join M_Brg B On D.ArtCode=B.ArtCode Inner Join M_BrgHarga H On B.ArtCode=H.ArtCode Where Jenis='" & Me.SLUJnsCust.EditValue & "' and MtUang='" & Me.SLUMtUang.EditValue & "' and Gol In ('" & Gol & "','Promosi') and B.Aktif='True' and H.Aktif='True' and POID='" & Me.SLUSJID.EditValue & "' and SisaKirim >0 Order By D.ArtCode Asc", koneksi)
+    '            End If
 
-                Me.SLUMtUang.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("MtUang")
+    '            Me.SLUMtUang.EditValue = DsMaster.Tables("T_SJ" & Gol).Select("SJID = '" & Me.SLUSJID.EditValue & "'")(0).Item("MtUang")
 
-                CekCurr()
+    '            CekCurr()
 
-                cmsl.TableMappings.Add("Table", "T_JualBJDtl")
-                cmsl.Fill(DsMaster, "T_JualBJDtl")
-                DsMaster.Tables("T_JualBJDtl").Clear()
-                cmsl.Fill(DsMaster, "T_JualBJDtl")
+    '            cmsl.TableMappings.Add("Table", "T_JualBJDtl")
+    '            cmsl.Fill(DsMaster, "T_JualBJDtl")
+    '            DsMaster.Tables("T_JualBJDtl").Clear()
+    '            cmsl.Fill(DsMaster, "T_JualBJDtl")
 
-                Me.GridControl1.DataSource = DsMaster
-                Me.GridControl1.DataMember = "T_JualBJDtl"
+    '            Me.GridControl1.DataSource = DsMaster
+    '            Me.GridControl1.DataMember = "T_JualBJDtl"
 
-                CekPromo()
+    '            CekPromo()
 
-            Catch ex As Exception
+    '        Catch ex As Exception
 
-            End Try
+    '        End Try
 
-            Me.SLUSales.Properties.ReadOnly = True
-            Me.SLUCust.Properties.ReadOnly = True
-            Me.CBOJnsFt.Properties.ReadOnly = True
-            Me.CBOKat.Properties.ReadOnly = True
-            Me.SLUPromo.Properties.ReadOnly = True
+    '        Me.SLUSales.Properties.ReadOnly = True
+    '        Me.SLUCust.Properties.ReadOnly = True
+    '        Me.CBOJnsFt.Properties.ReadOnly = True
+    '        Me.CBOKat.Properties.ReadOnly = True
+    '        Me.SLUPromo.Properties.ReadOnly = True
 
-        Else
-            Me.SLUSales.Properties.ReadOnly = False
-            Me.SLUCust.Properties.ReadOnly = False
-            Me.CBOJnsFt.Properties.ReadOnly = False
-            Me.CBOKat.Properties.ReadOnly = False
-            Me.SLUPromo.Properties.ReadOnly = False
+    '    Else
+    '        Me.SLUSales.Properties.ReadOnly = False
+    '        Me.SLUCust.Properties.ReadOnly = False
+    '        Me.CBOJnsFt.Properties.ReadOnly = False
+    '        Me.CBOKat.Properties.ReadOnly = False
+    '        Me.SLUPromo.Properties.ReadOnly = False
 
-        End If
-    End Sub
+    '    End If
+    'End Sub
 
     Private Sub SLUGd_Leave(sender As Object, e As EventArgs) Handles SLUGd.Leave
         If Me.SLUGd.Properties.ReadOnly = False Then
@@ -2325,5 +2368,9 @@ Public Class FFtBJ
     Private Sub GridControl1_EditorKeyPress(ByVal sender As System.Object, ByVal e As KeyPressEventArgs) Handles GridControl1.EditorKeyPress
         Dim grid As GridControl = CType(sender, GridControl)
         GridView1_KeyPress(grid.FocusedView, e)
+    End Sub
+
+    Private Sub TBID_EditValueChanged(sender As Object, e As EventArgs) Handles TBID.EditValueChanged
+
     End Sub
 End Class

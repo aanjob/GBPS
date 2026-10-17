@@ -11,9 +11,9 @@ Public Class XRFtBebas
     Dim TotDisc, TotPPn, TotAkhir As Decimal
 
     Public Sub InitializeData(ByVal Bind As Collection)
-        cmsl = New SqlDataAdapter("Select Nama,Qty,Sat,HarSat,HarSbDisc,DiscRp,DiscP,RpDiscP,HarAkhir From T_JualBebasDtl Where JualID='" & Bind.Item("Kode").ToString & "'", koneksi)
+        cmsl = New SqlDataAdapter("Select a.Nama,a.Qty,a.Sat,a.HarSat,a.HarSbDisc,a.DiscRp,a.DiscP,a.RpDiscP,a.HarAkhir From T_JualBebasDtl  a left join T_JualBebas b on a.JualID=b.JualID Where a.JualID='" & Bind.Item("Kode").ToString & "'", koneksi)
 
-        cmsl.TableMappings.AddRange(New System.Data.Common.DataTableMapping() {New System.Data.Common.DataTableMapping("Table", "T_JualBebasDtl", New System.Data.Common.DataColumnMapping() {New System.Data.Common.DataColumnMapping("Nama", "Nama"), New System.Data.Common.DataColumnMapping("Sat", "Sat"), New System.Data.Common.DataColumnMapping("Qty", "Qty"), New System.Data.Common.DataColumnMapping("HarSat", "HarSat"), New System.Data.Common.DataColumnMapping("HarSbDisc", "HarSbDisc")})})
+        cmsl.TableMappings.AddRange(New System.Data.Common.DataTableMapping() {New System.Data.Common.DataTableMapping("Table", "T_JualBebasDtl", New System.Data.Common.DataColumnMapping() {New System.Data.Common.DataColumnMapping("Nama", "Nama"), New System.Data.Common.DataColumnMapping("Sat", "Sat"), New System.Data.Common.DataColumnMapping("Qty", "Qty"), New System.Data.Common.DataColumnMapping("HarSat", "HarSat"), New System.Data.Common.DataColumnMapping("HarSbDisc", "HarSbDisc"), New System.Data.Common.DataColumnMapping("Grand", "Grand")})})
 
         DsLap = New System.Data.DataSet
         cmsl.Fill(DsLap, "T_JualBebasDtl")
@@ -23,7 +23,7 @@ Public Class XRFtBebas
 
         'Me.LBPerusahaan.Text = MainModule.NmPerusahaan & vbCrLf & MainModule.Alamat & vbCrLf & MainModule.Kota
         Me.LBKode.Text = ": " & Bind.Item("Kode").ToString
-        Me.LBTanggal.Text = "Tanggal : " & Format(CDate(Bind.Item("Tanggal")), "dd MMMM yyyy")
+        'Me.LBTanggal.Text = "Tanggal : " & Format(CDate(Bind.Item("Tanggal")), "dd MMMM yyyy")
         Me.LBCust.Text = Bind.Item("Cust").ToString
         Me.LBAlamat.Text = Bind.Item("Alamat").ToString & vbCrLf & "  " & Bind.Item("Kota").ToString
         Me.LBKota.Text = MainModule.Kota & ", " & Format(CDate(Bind.Item("Tanggal")), "dd MMMM yyyy")
@@ -42,6 +42,7 @@ Public Class XRFtBebas
         TotDisc = CDec(Bind.Item("TotDisc").ToString)
         TotPPn = CDec(Bind.Item("TotPPn").ToString)
         TotAkhir = CDec(Bind.Item("TotAkhir").ToString)
+        'Grand = CDec(Bind.Item("Grand").ToString)
 
         Me.LBTotDisc.Text = String.Format("{0:#,##0.00;(#,##0.00);""}", TotDisc)
         Me.LBPPn.Text = String.Format("{0:#,##0.00;(#,##0.00);""}", TotPPn)
